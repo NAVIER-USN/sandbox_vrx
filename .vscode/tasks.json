@@ -91,7 +91,7 @@
                 "id": "debug-start"
             },
             "type": "shell",
-            "command": "source /opt/ros/$ROS_DISTRO/setup.bash && ros2 run foxglove_bridge foxglove_bridge",
+            "command": "source /opt/ros/$ROS_DISTRO/setup.bash && rosrun foxglove_bridge foxglove_bridge",
             "isBackground": true,
             "hide": true,
             "problemMatcher": []
