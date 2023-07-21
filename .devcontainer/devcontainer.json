@@ -1,6 +1,6 @@
 {
     "name": "Sandbox",
-     "image": "ghcr.io/rplayground/sandbox:main",
+    "image": "ghcr.io/navier-usn/sandbox_vrx:latest",
      // "build": {
      //     "dockerfile": "../Dockerfile",
      //     "context": "..",
@@ -15,11 +15,16 @@
         // "--privileged", // device access to host peripherals, e.g. USB
         // "--security-opt=seccomp=unconfined", // enable debugging, e.g. gdb
     ],
+    // "features": {
+    //
+    // },
+    
     "workspaceFolder": "/opt/overlay_ws/src/sandbox",
     "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind",
     "onCreateCommand": "./.devcontainer/on-create-command.sh",
     "updateContentCommand": "./.devcontainer/update-content-command.sh",
     "postCreateCommand": "./.devcontainer/post-create-command.sh",
+
     "customizations": {
         "codespaces": {
             "openFiles": [
@@ -29,11 +34,13 @@
         "vscode": {
             "settings": {},
             "extensions": [
-                "eamodio.gitlens",
-                "GitHub.copilot",
-                "ms-iot.vscode-ros",
-                "streetsidesoftware.code-spell-checker"
-            ]
+				"eamodio.gitlens",
+				"GitHub.copilot",
+				"ms-iot.vscode-ros",
+				"streetsidesoftware.code-spell-checker",
+				"oderwat.indent-rainbow",
+				"apoorvkhare07.andromeda-vscode"
+			]
         }
     }
 }
