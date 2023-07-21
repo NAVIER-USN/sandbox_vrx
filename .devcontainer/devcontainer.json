@@ -16,9 +16,9 @@
     ],
     "workspaceFolder": "/opt/overlay_ws/src/sandbox",
     "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind",
-    // "onCreateCommand": ".devcontainer/on-create-command.sh",
-    // "updateContentCommand": ".devcontainer/update-content-command.sh",
-    // "postCreateCommand": ".devcontainer/post-create-command.sh",
+    "onCreateCommand": "./.devcontainer/on-create-command.sh",
+    "updateContentCommand": "./.devcontainer/update-content-command.sh",
+    "postCreateCommand": "./.devcontainer/post-create-command.sh",
     "customizations": {
         "codespaces": {
             "openFiles": [
