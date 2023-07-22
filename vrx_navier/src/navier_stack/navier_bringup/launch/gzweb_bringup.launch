@@ -18,7 +18,7 @@
 
   <!-- Start Gazebo with the world file -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name"   value="$(find vrx_gazebo)/worlds/gymkhana.world" />
+    <arg name="world_name"   value="$(find vrx_gazebo)/worlds/sydneyregatta.world" />
     <arg name="verbose"      value="true"/>
     <arg name="paused"       value="$(arg paused)"/>
     <arg name="use_sim_time" value="true"/>

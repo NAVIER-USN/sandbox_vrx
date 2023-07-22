@@ -1,5 +1,5 @@
-DIST=noetic
-GAZ=gazebo11
+echo "/usr/share/gazebo-11/setup.sh" >> ~/.bashrc
+echo "source /opt/overlay_ws/src/sandbox/vrx_navier/devel/setup.bash" >> ~/.bashrc
 
 echo copying models to gzweb directory
 cp -r /opt/overlay_ws/src/sandbox/vrx_navier/src/vrx/vrx_gazebo /opt/gzweb/http/client/assets/
@@ -12,7 +12,5 @@ cp -r /opt/overlay_ws/src/sandbox/vrx_navier/src/vrx/wamv_gazebo/models/gps /opt
 
 cp -r /opt/overlay_ws/src/sandbox/vrx_navier/src/vrx/wave_gazebo/world_models/ocean_waves /opt/gzweb/http/client/assets/
 cp -r /opt/overlay_ws/src/sandbox/vrx_navier/src/vrx/wave_gazebo /opt/gzweb/http/client/assets/
-
-
 
 echo models copied
