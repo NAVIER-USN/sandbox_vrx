@@ -16,13 +16,14 @@ source devel/setup.bash
 ### 3. import gazebo models
 To render the custom models in the simulation through gzweb, run the `setup_models.sh`  script:
 ```bash
+cd /opt/overlay_ws/src/sandbox
 ./setup_models.sh
 ```
 This will copy relevant simulation models in to the /opt/gzweb/http/client/assets directory, such that they can be viewed in the browser.
 
 ### 4. Start the simulation
 ```
-roslaunch navier_bringup gzweb_bringuo.launch
+roslaunch navier_bringup gzweb_bringup.launch
 ```
 
 ### 5. Set up and view visualizations
