@@ -1,6 +1,7 @@
 DIST=noetic
 GAZ=gazebo11
-DEBIAN_FRONTEND=noninteractive
+
+export DEBIAN_FRONTEND=noninteractive
 
 sudo apt update
 sudo apt full-upgrade
@@ -10,12 +11,14 @@ sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 sudo apt update
-sudo apt install -y ${GAZ} lib${GAZ}-dev ros-${DIST}-xacro ros-${DIST}-nmea-msgs ros-${DIST}-gazebo-plugins \
+DEBIAN_FRONTEND=noninteractive sudo apt install -y ${GAZ} lib${GAZ}-dev ros-${DIST}-xacro ros-${DIST}-nmea-msgs ros-${DIST}-gazebo-plugins \
      ros-${DIST}-gazebo-ros ros-${DIST}-hector-gazebo-plugins ros-${DIST}-joy ros-${DIST}-joy-teleop \
      ros-${DIST}-key-teleop ros-${DIST}-robot-localization ros-${DIST}-robot-state-publisher ros-${DIST}-joint-state-publisher \
      ros-${DIST}-rviz ros-${DIST}-ros-base ros-${DIST}-teleop-tools ros-${DIST}-teleop-twist-keyboard ros-${DIST}-velodyne-simulator \
      ros-${DIST}-xacro ros-${DIST}-rqt ros-${DIST}-rqt-common-plugins
 
+
+echo "source /opt/ros/${DIST}/setup.bash" >> ~/.bashrc
 
 echo copying models to gzweb directory
 cp -r /opt/overlay_ws/src/sandbox/vrx_navier/src/vrx/vrx_gazebo/models/* /opt/gzweb/http/client/assets/
@@ -23,3 +26,5 @@ cp -r /opt/overlay_ws/src/sandbox/vrx_navier/src/vrx/wamv_description/models/* /
 cp -r /opt/overlay_ws/src/sandbox/vrx_navier/src/vrx/wamv_gazebo/models/gps /opt/gzweb/http/client/assets/
 cp -r /opt/overlay_ws/src/sandbox/vrx_navier/src/vrx/wave_gazebo/world_models/ocean_waves /opt/gzweb/http/client/assets/
 echo models copied
+
+export DEBIAN_FRONTEND=

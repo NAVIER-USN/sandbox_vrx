@@ -8,8 +8,6 @@ set -eo pipefail
 # env
 
 git config --global --add safe.directory "*"
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 
 ./.devcontainer/update-content-command.sh
-
-
-echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
