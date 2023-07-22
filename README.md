@@ -1,30 +1,32 @@
-# RPlayground Sandbox
+# VRX simulation
 
-A sandbox playground for robotics development.
+## codespaces setup
+### 1. Create codespace
+Create and enter a new codespace for this repository by clicking on the blue "\<code>" button, then "create codespace on main". This will spin up a virtual machine on github's cloud, with all necessary developer tools and simulation dependencies ready to go
 
-## Background
-
-For more related documentation:
-
-- [Nav2 Documentation](https://navigation.ros.org)
-  - [Development Guides](https://navigation.ros.org/development_guides)
-    - [Dev Containers](https://navigation.ros.org/development_guides/devcontainer_docs)
-
-## Demo
-
-- Open the project from VS Code with the Dev Container extension installed
-- From the command palette ``(Crtl+Shift+P)``, type and enter `Dev containers: Reopen in Container`
-- Open open a new shell ``(Crtl+Shift+`)`` from the terminal panel and run:
-
+### 2. Set up workspace
+navigate to the root of the ros workspace, then compile and source the environment.
 ```bash
-source /opt/ros/$ROS_DISTRO/setup.bash
-source /usr/share/gazebo/setup.sh
-GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$(find /opt/ros/$ROS_DISTRO/share \
-  -mindepth 1 -maxdepth 2 -type d -name "models" | paste -s -d: -)
-ros2 launch ./launch/security_demo_launch.py \
-  use_rviz:=False headless:=True
+cd /opt/overlay_ws/src/sandbox/vrx_navier
+catkin_make
+source devel/setup.bash
 ```
 
-- From the command palette, type and enter `Tasks: Run Task` and select `Start Visualizations`
-- From the port panel, click the `Open in Browser` button for port `8080` forwarded from the container
-- Finally, play around with the various sandboxed web apps using the include launcher page
+### 3. import gazebo models
+To render the custom models in the simulation through gzweb, run the `setup_models.sh`  script:
+```bash
+./setup_models.sh
+```
+This will copy relevant simulation models in to the /opt/gzweb/http/client/assets directory, such that they can be viewed in the browser.
+
+### 4. Start the simulation
+```
+roslaunch navier_bringup gzweb_bringuo.launch
+```
+
+### 5. Set up and view visualizations
+- To start gzweb, foxglove, glances and the PWA hub, run the "start visualizations" task by first entering the command palette (`ctrl+shift+p`), selecting `Task: run task` and `Start visualization`.
+
+- From the `PORTS` panel, click the `Open in Browser` button for port `8080` forwarded from the container to view the visualization launcher page.
+
+- Finally, play around with the various web apps using the launcher page.
