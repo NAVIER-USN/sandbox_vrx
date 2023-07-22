@@ -3,10 +3,6 @@ ARG FROM_IMAGE=ros:noetic
 # multi-stage for building
 FROM $FROM_IMAGE AS builder
 
-
-# multi-stage for building
-FROM $FROM_IMAGE AS builder
-
 ENV DIST=noetic
 ENV GAZ=gazebo11
 
@@ -14,7 +10,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN export DEBIAN_FRONTEND=noninteractive
 
 # install ros dependencies
-RUN apt-get update && apt-get full-upgrade && apt-get install -y \
+RUN apt-get update && apt-get full-upgrade -y && apt-get install -y \
       build-essential cmake cppcheck curl git gnupg libeigen3-dev libgles2-mesa-dev lsb-release pkg-config protobuf-compiler qtbase5-dev python3-dbg python3-pip python3-venv ruby software-properties-common wget \
       ros-$ROS_DISTRO-foxglove-bridge \
     && echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list \
@@ -26,14 +22,9 @@ RUN apt-get update && apt-get full-upgrade && apt-get install -y \
       ros-${DIST}-gazebo-ros ros-${DIST}-hector-gazebo-plugins ros-${DIST}-joy ros-${DIST}-joy-teleop \
       ros-${DIST}-key-teleop ros-${DIST}-robot-localization ros-${DIST}-robot-state-publisher ros-${DIST}-joint-state-publisher \
       ros-${DIST}-rviz ros-${DIST}-ros-base ros-${DIST}-teleop-tools ros-${DIST}-teleop-twist-keyboard ros-${DIST}-velodyne-simulator \
-      ros-${DIST}-xacro ros-${DIST}-rqt ros-${DIST}-rqt-common-plugins \
+      ros-${DIST}-xacro ros-${DIST}-rqt ros-${DIST}-rqt-common-plugins ros-${DIST}-foxglove-bridge \
     && rm -rf /var/lib/apt/lists/*
 
-
-# install ros dependencies
-RUN apt-get update && apt-get install -y \
-      ros-$ROS_DISTRO-foxglove-bridge \
-    && rm -rf /var/lib/apt/lists/*
 
 # multi-stage for developing
 FROM builder AS dever
