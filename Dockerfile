@@ -10,6 +10,7 @@ FROM $FROM_IMAGE AS builder
 ENV DIST=noetic
 ENV GAZ=gazebo11
 
+ARG DEBIAN_FRONTEND=noninteractive
 RUN export DEBIAN_FRONTEND=noninteractive
 
 # install ros dependencies
@@ -30,7 +31,6 @@ RUN apt-get update && apt-get full-upgrade && apt-get install -y \
 
 
 # install ros dependencies
-ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
       ros-$ROS_DISTRO-foxglove-bridge \
     && rm -rf /var/lib/apt/lists/*
