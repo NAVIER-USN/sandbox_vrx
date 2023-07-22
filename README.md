@@ -7,6 +7,7 @@ Create and enter a new codespace for this repository by clicking on the blue "\<
 ### 2. Set up workspace
 navigate to the root of the ros workspace, then compile and source the environment.
 ```bash
+source /opt/ros/noetic/setup.bash
 cd /opt/overlay_ws/src/sandbox/vrx_navier
 catkin_make
 source devel/setup.bash
